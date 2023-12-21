@@ -1,7 +1,7 @@
-sample = range(1, 101)  # 1 - 100
+sample: range = range(1, 101)  # 1 - 100
 
 
-def fizz_buzz():
+def fizz_buzz() -> None:
     global sample
     for i in sample:
         if i % 3 == 0 and i % 5 == 0:
