@@ -1,7 +1,5 @@
-test = input("To encrypt: ")
-
-
-def encrypt_caesar(word: str, shift: int):
+def encrypt_caesar(shift: int):
+    word = input("Enter a message to encrypt: ")
     print("Encrypting...")
     arr = []  # Empty array for the cipher
     # ord converts a character to its representative index
@@ -11,7 +9,8 @@ def encrypt_caesar(word: str, shift: int):
     return "".join(arr)
 
 
-def decrypt_caesar(word: str, shift: int):
+def decrypt_caesar(shift: int):
+    word = input("Enter a message to decrypt: ")
     print(f"Decrypting with shift {shift}")
 
     arr = []
@@ -22,12 +21,41 @@ def decrypt_caesar(word: str, shift: int):
     return "".join(arr)
 
 
-res = encrypt_caesar(test, 1)
+def menu():
+    items = ["Encrypt", "Decrypt", "Exit"]
 
-print("Final encrypted message: ")
-print(res)
+    for i, v in enumerate(items):
+        print(f"[{i}: {v}]")
+
+    while True:
+        try:
+            user_action = int(input("Select from the menu: "))
+            if user_action > len(items) or user_action < 0:
+                print("Not a valid action. Out of index range.")
+                input("Press enter to continue")
+                continue
+            else:
+                break
+        except:
+            print("Please input a valid action.")
+            input("Press enter to continue")
+            continue
+
+    match user_action:
+        case 0:
+            res = encrypt_caesar(1)
+            print(f"Encrypted message: {res}")
+            input("Press enter to continue")
+        case 1:
+            decrypt_caesar(1)
+            res = decrypt_caesar(1)
+            print(f"Decrypted message: {res}")
+            input("Press enter to continue")
+
+        case 2:
+            print("Exiting program.")
+            exit()
 
 
-print("Decrypting...")
-res = decrypt_caesar(res, 1)
-print(res)
+while True:
+    menu()
